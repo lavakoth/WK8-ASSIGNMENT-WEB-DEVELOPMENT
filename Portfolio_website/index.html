@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutitu Adventist College - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+     <!-- Header -->
+    <header>
+        <div class="container">
+            <div>
+                <img src="Assets/logo.png" alt="Mutitu Adventist College Logo">
+                <figcaption>Mutitu Adventist Collage</figcaption>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="programs.html">Programs</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content: Home Page -->
+    <main>
+        <!-- Section 1: Hero (Gradient Navy with Parallax) -->
+        <section class="hero" style="background: var(--section1-bg);">
+            <div class="hero-content">
+                <h1 style="font-size: 4rem; font-weight: 600;">Mutitu Adventist College</h1>
+                <p style="font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Shaping Educators, Inspiring Futures</p>
+                <p class="max-w-2xl mx-auto">Nestled in the majestic Mbooni Hills, our premier institution combines faith, academic rigor, and service to create transformative educators. Begin your journey just 1.5 hours from Nairobi.</p>
+                <div style="display: flex; gap: 25px; justify-content: center;">
+                    <a href="contact.html" class="btn btn-primary">Apply Now</a>
+                    <a href="about.html" class="btn btn-secondary">Our Story</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Why Choose Mutitu (Elegant Off-White with Animated Cards) -->
+        <section class="section" style="background-color: var(--section2-bg);">
+            <div class="container">
+                <h2>Why Choose Mutitu?</h2>
+                <p style="text-align: center; margin-bottom: 50px; font-style: italic; font-size: 1.2rem;">Experience education that transcends the ordinary, rooted in faith and excellence.</p>
+                <div class="grid">
+                    <article class="card">
+                        <h3>Holistic Excellence</h3>
+                        <p>Our SDA values nurture mind, body, and spirit for a balanced education.</p>
+                        <a href="about.html">Discover More</a>
+                    </article>
+                    <article class="card">
+                        <h3>World-Class Faculty</h3>
+                        <p>Learn from passionate educators dedicated to your success.</p>
+                        <a href="about.html">Meet Our Team</a>
+                    </article>
+                    <article class="card">
+                        <h3>Inspiring Campus</h3>
+                        <p>Thrive in the serene Mbooni Hills, designed for focus and growth.</p>
+                        <a href="gallery.html">See Our Campus</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Academic Excellence (Soft Red Gradient with Parallax) -->
+        <section class="section section-parallax" style="background: var(--section3-bg);">
+            <div class="container">
+                <h2 style="color: var(--white); text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Academic Excellence</h2>
+                <p style="text-align: center; margin-bottom: 50px; color: var(--white); font-size: 1.2rem;">Crafted to meet Kenya’s CBC and TSC standards, our programs empower educators.</p>
+                <div class="grid">
+                    <article class="card">
+                        <h3>P1 Certificate</h3>
+                        <p>Master primary education with our 2-year, TSC-aligned program.</p>
+                        <a href="programs.html">Explore Program</a>
+                    </article>
+                    <article class="card">
+                        <h3>ECDE Diploma</h3>
+                        <p>Excel in early childhood education with innovative training.</p>
+                        <a href="programs.html">Explore Program</a>
+                    </article>
+                    <article class="card">
+                        <h3>Alumni Impact</h3>
+                        <p>Our graduates shape futures in over 200 schools nationwide.</p>
+                        <a href="programs.html">Learn More</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Campus Life (Light Blue Gradient with Interactive Gallery) -->
+        <section class="section" style="background: var(--section4-bg);">
+            <div class="container">
+                <h2>Vibrant Campus Life</h2>
+                <p style="text-align: center; margin-bottom: 50px; font-style: italic; font-size: 1.2rem;">Immerse yourself in a community of faith, creativity, and connection.</p>
+                <div class="grid campus-life-grid">
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Chapel+Worship', 'Chapel Services')">
+                        <img src="Assets/WhatsApp Image 2025-04-17 at 22.11.01_e3e820e9.jpg" alt="Chapel Worship">
+                        <figcaption>Chapel Services</figcaption>
+                    </figure>
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Sports+Field', 'Sports Activities')">
+                        <img src="Assets/kindergaten.jpg" alt="Sports Activities">
+                        <figcaption>Sports Activities</figcaption>
+                    </figure>
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Community+Service', 'Community Outreach')">
+                        <img src="Assets/IMG_1835.JPG" alt="Community Service">
+                        <figcaption>Community Outreach</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Call to Action (Deep Navy Gradient with Animated Gradient) -->
+        <section class="section cta-section" style="background: var(--section5-bg);">
+            <div class="container">
+                <h2 style="color: var(--gold);">Join Our Legacy</h2>
+                <p style="text-align: center; margin-bottom: 50px; font-size: 1.2rem;">Launch your career in education with Mutitu. Apply for our 2026 intake today!</p>
+                <div>
+                    <a href="contact.html" class="btn btn-primary">Apply Now</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
+                <div class="announcement">
+                    <p>📢 <strong>Admissions Open for 2026!</strong> Become part of our prestigious community in Mbooni Hills.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Info</h3>
+                <p>Phone: +254 702 264 201</p>
+                <p>Email: <a href="mailto:info@mutituadventist.com">info@mutituadventist.com</a></p>
+                <p>Address: P.O. Box 23, Kikima, Makueni County, Kenya</p>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <div>
+                    <a href="#">Facebook</a> |
+                    <a href="#">Twitter/X</a> |
+                    <a href="#">Instagram</a> |
+                    <a href="#">YouTube</a>
+                </div>
+                <p>© Mutitu Adventist College 2025. All Rights Reserved. | A Seventh-day Adventist Institution.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); align-items: center; justify-content: center; z-index: 1000; animation: fadeInUp 0.5s ease;">
+        <span onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; color: var(--gold); font-size: 45px; cursor: pointer; transition: color 0.3s ease;">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image" style="max-width: 90%; max-height: 90%; border: 5px solid var(--gold); border-radius: 20px;">
+    </div>
+</body>
+</html>

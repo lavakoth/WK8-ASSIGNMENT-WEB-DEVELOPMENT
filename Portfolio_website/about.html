@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutitu Adventist College - About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #1E3A8A;
+            --red: #B91C1C;
+            --gold: #FBBF24; /* Brighter gold for better contrast */
+            --platinum: #E5E7EB;
+            --charcoal: #111827; /* Darker text for light backgrounds */
+            --section1-bg: linear-gradient(135deg, #e8ebf1 0%, #c9d6d3 100%); /* Sapphire gradient */
+            --section2-bg: #F9FAFB; /* Pearl white */
+            --section3-bg: linear-gradient(135deg, #FEE2E2 0%, #FCA5A5 100%); /* Ruby gradient */
+            --section4-bg: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); /* Sky blue gradient */
+            --section5-bg: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%); /* Indigo gradient */
+            --white: #FFFFFF;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+        body {
+            scroll-behavior: smooth;
+            color: var(--charcoal);
+            background-color: var(--section2-bg);
+            position: relative;
+        }
+        /* Particle Animation Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(90deg, var(--dark-blue), #1E40AF);
+            color: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px;
+        }
+        header img {
+            height: 70px;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        header img:hover {
+            transform: scale(1.15);
+            filter: brightness(1.3);
+        }
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+        .nav-links a {
+            color: var(--white); /* Brighter for visibility */
+            text-decoration: none;
+            font-size: 1.3rem;
+            position: relative;
+            transition: color 0.4s ease;
+            font-weight: 600;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            bottom: -8px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--gold);
+        }
+        .section {
+            padding: 150px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .section h2 {
+            font-size: 4rem;
+            color: var(--dark-blue);
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Playfair Display', serif;
+            animation: fadeInUp 1.5s ease;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            margin: 15px auto;
+        }
+        .section h3 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        .section p, .section ul {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+        .section ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .section ul li::before {
+            content: '✦';
+            color: var(--gold);
+            margin-right: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+        }
+        .card {
+            background: var(--white);
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            padding: 50px;
+            text-align: center;
+            transition: transform 0.6s ease, box-shadow 0.6s ease, rotate 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        .card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .card:hover::before {
+            left: 100%;
+        }
+        .card h3 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 25px;
+        }
+        .card p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color:black ;
+        }
+        .card ul {
+            color: black;
+            text-shadow: none;
+        }
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            transition: all 0.5s ease;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--red), #D32F2F);
+            color: var(--white);
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #991B1B, var(--red));
+            transform: scale(1.15);
+            box-shadow: var(--shadow);
+        }
+        .section-parallax {
+            background: url('https://via.placeholder.com/1920x600?text=Campus+Legacy') center/cover no-repeat fixed;
+            background: var(--section1-bg);
+            color: var(--platinum);
+            position: relative;
+        }
+        .section-parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), transparent);
+        }
+        .section-parallax .container {
+            position: relative;
+        }
+        .section-parallax h3, .section-parallax ul li {
+            color: var(--white);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+        .section-parallax h2 {
+            color: var(--white);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+        .section-parallax .card {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .section-parallax .card h3, .section-parallax .card p {
+            color: var(--charcoal);
+            text-shadow: none;
+        }
+        .image-grid figure {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.6s ease;
+        }
+        .image-grid figure:hover {
+            transform: scale(1.05);
+        }
+        .image-grid img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.7s ease, filter 0.7s ease;
+        }
+        .image-grid figure:hover img {
+            transform: scale(1.2);
+            filter: brightness(1.15);
+        }
+        .image-grid figcaption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.9), transparent);
+            color: var(--white); /* Brighter for visibility */
+            padding: 25px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-family: 'Lora', serif;
+            transition: opacity 0.5s ease;
+        }
+        .image-grid figure:hover figcaption {
+            opacity: 0.95;
+        }
+        footer {
+            background: linear-gradient(90deg, var(--dark-blue), #1E40AF);
+            color: var(--white);
+            padding: 80px 0;
+        }
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 50px;
+        }
+        footer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+        footer ul {
+            list-style: none;
+        }
+        footer ul li {
+            margin-bottom: 20px;
+        }
+        footer a {
+            color: var(--white); /* Brighter for visibility */
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.4s ease;
+        }
+        footer a:hover {
+            color: var(--gold);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-80px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100px;
+                left: 0;
+                width: 100%;
+                background: var(--dark-blue);
+                padding: 30px;
+                box-shadow: var(--shadow);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 20px;
+                font-size: 1.5rem;
+            }
+            .section h2 {
+                font-size: 3rem;
+            }
+            .section h3 {
+                font-size: 2rem;
+            }
+            .section-parallax {
+                background-attachment: scroll;
+            }
+            .image-grid img {
+                height: 250px;
+            }
+            .card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Animation Canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div>
+                <img src="Assets/logo.png" alt="Mutitu Adventist College Logo">
+                <figcaption>Mutitu Adventis Collage</figcaption>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="programs.html">Programs</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content: About Page -->
+    <main>
+        <!-- Section 1: Introduction & History (Sapphire Gradient, Parallax) -->
+        <section class="section section-parallax" style="background: var(--section1-bg);">
+            <div class="container">
+                <h2>Our Legacy</h2>
+                <p style="text-align: center; margin-bottom: 60px; font-size: 1.3rem; color: var(--platinum);">Discover the heart of Mutitu Adventist College, a beacon of faith-based education in Mbooni Hills.</p>
+                <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="card">
+                        <h3>Our Heritage</h3>
+                        <p>Rooted in the Seventh-day Adventist Church, Mutitu has evolved from a mission school to a premier teachers’ college, impacting over 200 schools with ethical educators.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Our Mission & Vision</h3>
+                        <p><strong>Mission:</strong> To nurture holistic individuals through academic excellence, spiritual growth, and service.<br><strong>Vision:</strong> To lead as a faith-based institution producing competent, ethical educators.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Location & Facilities (Pearl White) -->
+        <section class="section" style="background: var(--section2-bg);">
+            <div class="container">
+                <h2>Location & Facilities</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Mbooni Hills Serenity</h3>
+                        <p>Nestled 1.5 km from Kikima Market, our campus offers a tranquil escape 1.5 hours from Nairobi, blending rural peace with accessibility for focused learning.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Exceptional Facilities</h3>
+                        <p>Modern classrooms, a state-of-the-art library, advanced computer labs, spacious hostels, a serene chapel, sports fields, and a health-focused dining hall elevate the student experience.</p>
+                    </div>
+                </div>
+                <div class="image-grid" style="margin-top: 60px;">
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Campus+Aerial', 'Mbooni Hills Campus')">
+                        <img src="Assets/tomas-eidsvold-s2wjvuA_mFY-unsplash.jpg" alt="Mbooni Hills Campus">
+                        <figcaption>Mbooni Hills Campus</figcaption>
+                    </figure>
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Library+Interior', 'State-of-the-Art Library')">
+                        <img src="Assets/gonzalo-facello-NdKAOj89lmc-unsplash.jpg" alt="State-of-the-Art Library">
+                        <figcaption>State-of-the-Art Library</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Academic Programs & Governance (Ruby Gradient, Parallax) -->
+        <section class="section section-parallax" style="background: var(--section3-bg);">
+            <div class="container">
+                <h2>Academic Excellence & Leadership</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Academic Programs</h3>
+                        <ul style="text-align: left;">
+                            <li style="color: black;  text-shadow: none;"><strong>P1 Certificate:</strong> 2-year program for primary teaching, focusing on pedagogy and CBC.</li>
+                            <li style="color: black;  text-shadow: none;"><strong>ECDE Diploma:</strong> 2–3 years, specializing in early childhood education.</li>
+                            <li  style="color: black;  text-shadow: none;"><strong>ECDE Certificate:</strong> 1–2 years, foundational training for young learners.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Governance</h3>
+                        <p>Led by the Central Kenya Conference, our Principal and faculty ensure alignment with SDA values and Kenya’s educational standards, fostering disciplined leadership.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Student Life & Achievements (Sky Blue Gradient) -->
+        <section class="section" style="background: var(--section4-bg);">
+            <div class="container">
+                <h2>Life & Legacy</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Vibrant Community</h3>
+                        <p>Daily worship, Bible studies, and clubs (debate, drama, environmental) foster creativity and leadership. Sports like football and volleyball promote wellness.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Remarkable Achievements</h3>
+                        <p>Our alumni teach in over 200 schools, excelling in CBC implementation. The college is renowned for producing disciplined, professional educators.</p>
+                    </div>
+                </div>
+                <div class="image-grid" style="margin-top: 60px;">
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Student+Life', 'Vibrant Student Life')">
+                        <img src="Assets/" alt="Vibrant Student Life">
+                        <figcaption>Vibrant Student Life</figcaption>
+                    </figure>
+                    <figure onclick="openLightbox('https://via.placeholder.com/800x600?text=Graduation+Ceremony', 'Graduation Excellence')">
+                        <img src="Assets/WhatsApp Image 2025-04-17 at 22.11.01_e3e820e9.jpg" alt="Graduation Excellence">
+                        <figcaption>Graduation Excellence</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Challenges & Future Outlook (Indigo Gradient) -->
+        <section class="section" style="background: var(--section5-bg); color: var(--platinum);">
+            <div class="container">
+                <h2 style="color: var(--gold);">Challenges & Aspirations</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3 style="color: var(--gold);">Challenges</h3>
+                        <p>We navigate limited resources, competition, technology gaps, and CBC adaptation, driving us to innovate relentlessly.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--gold);">Future Aspirations</h3>
+                        <p>We aim to expand programs, enhance ICT, forge partnerships, and develop world-class infrastructure to lead in teacher education.</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="contact.html" class="btn">Join Our Legacy</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Info</h3>
+                <p>Phone: +254 702 264 201</p>
+                <p>Email: <a href="mailto:info@mutituadventist.com">info@mutituadventist.com</a></p>
+                <p>Address: P.O. Box 23, Kikima, Makueni County, Kenya</p>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <div>
+                    <a href="#">Facebook</a> |
+                    <a href="#">Twitter/X</a> |
+                    <a href="#">Instagram</a> |
+                    <a href="#">YouTube</a>
+                </div>
+                <p>© Mutitu Adventist College 2025. All Rights Reserved. | A Seventh-day Adventist Institution.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; z-index: 1000; animation: fadeInUp 0.5s ease;">
+        <span onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; color: var(--gold); font-size: 50px; cursor: pointer; transition: color 0.4s ease;">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image" style="max-width: 90%; max-height: 90%; border: 6px solid var(--gold); border-radius: 25px; box-shadow: var(--shadow);">
+    </div>
+
+    <script>
+        // Toggle Menu
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Lightbox
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            img.alt = caption;
+            lightbox.style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Particle Animation
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particlesArray = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.02;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        function initParticles() {
+            for (let i = 0; i < 50; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.2) {
+                    particlesArray.splice(i, 1);
+                    particlesArray.push(new Particle());
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

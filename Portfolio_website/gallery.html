@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutitu Adventist College - Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --light-grey: #D1D5DB;
+            --blue: #1E3A8A;
+            --gold: #FBBF24;
+            --charcoal: #111827;
+            --section-bg: var(--white);
+            --header-bg: linear-gradient(90deg, #1E3A8A, #1E40AF);
+            --footer-bg: var(--blue);
+            --shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+        body {
+            scroll-behavior: smooth;
+            color: var(--charcoal);
+            background-color: var(--white);
+            position: relative;
+            overflow-x: hidden;
+            height: auto;
+        }
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--header-bg);
+            color: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+        header img {
+            height: 70px;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        header img:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.4s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--white);
+        }
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+            background: var(--section-bg);
+        }
+        .section-parallax {
+            position: relative;
+            color: var(--charcoal);
+        
+        }
+        .section-parallax video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .section-parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), transparent);
+            z-index: -1;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            animation: fadeInUp 2s ease;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 7px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 20px auto;
+        }
+        .section p {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            margin-bottom: 40px;
+            max-width: 800px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 70vh;
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s ease;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            height: 100%;
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--white);
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .carousel-item:hover .carousel-caption {
+            opacity: 1;
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-nav button {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .carousel-nav button:hover {
+            transform: scale(1.2);
+            background: var(--gold);
+            color: var(--white);
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .carousel-dot.active {
+            background: var(--gold);
+        }
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--gold), #D4AF37);
+            color: var(--charcoal);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            margin-top: 30px;
+        }
+        .btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 80%;
+            max-height: 80%;
+            position: relative;
+        }
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        .lightbox-caption {
+            color: var(--white);
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .lightbox-nav button {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(251, 191, 36, 0.4);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .lightbox-nav button:hover {
+            transform: scale(1.2);
+            background: var(--gold);
+            color: var(--white);
+        }
+        footer {
+            background: var(--footer-bg);
+            color: var(--white);
+            padding: 80px 0;
+            height: outo;
+        }
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 50px;
+        }
+        footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+        footer ul, footer p {
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        footer ul {
+            list-style: none;
+        }
+        footer ul li {
+            margin-bottom: 20px;
+        }
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.4s ease;
+        }
+        footer a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -4px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        footer a:hover::after {
+            width: 100%;
+        }
+        footer a:hover {
+            color: var(--gold);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: var(--header-bg);
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 15px;
+                font-size: 1.2rem;
+                color: var(--white);
+            }
+            .section h2 {
+                font-size: 2.5rem;
+            }
+            .carousel-container {
+                height: 60vh;
+            }
+            .carousel-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .lightbox-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Animation Canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div>
+                <img src="Assets/logo.png" alt="Mutitu Adventist College Logo">
+                <figcaption>Mutitu Adventist Collage</figcaption>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="programs.html">Programs</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content: Gallery Page -->
+    <main>
+        <!-- Single Section: Hero + Gallery Carousel -->
+        <section class="section section-parallax">
+            <video autoplay muted loop playsinline>
+                <source src="https://via.placeholder.com/1920x1080.mp4?text=Campus+Video" type="video/mp4">
+            </video>
+            <div class="container">
+                <h2>Campus Gallery</h2>
+                <p>Immerse yourself in the vibrant life at Mutitu Adventist College, nestled in the serene Mbooni Hills, through our curated moments of campus activities and events.</p>
+                <div class="carousel-container">
+                    <div class="carousel" id="carousel">
+                        <div class="carousel-item" data-tilt data-tilt-max="10" data-tilt-speed="400" onclick="openLightbox(0)">
+                            <img src="Assets/gonzalo-facello-NdKAOj89lmc-unsplash.jpg" alt="Campus Building">
+                            <div class="carousel-caption">Modern Classroom Facilities</div>
+                        </div>
+                        <div class="carousel-item" data-tilt data-tilt-max="10" data-tilt-speed="400" onclick="openLightbox(1)">
+                            <img src="Assets/WhatsApp Image 2025-04-17 at 22.11.01_e3e820e9.jpg" alt="Student Life">
+                            <div class="carousel-caption">Student Activities</div>
+                        </div>
+                        <div class="carousel-item" data-tilt data-tilt-max="10" data-tilt-speed="400" onclick="openLightbox(2)">
+                            <img src="Assets/kindergaten.jpg" alt="Chapel Service">
+                            <div class="carousel-caption">Worship Service</div>
+                        </div>
+                        <div class="carousel-item" data-tilt data-tilt-max="10" data-tilt-speed="400" onclick="openLightbox(3)">
+                            <img src="Assets/IMG_1835.JPG" alt="Community Outreach">
+                            <div class="carousel-caption">Community Outreach</div>
+                        </div>
+                        <div class="carousel-item" data-tilt data-tilt-max="10" data-tilt-speed="400" onclick="openLightbox(4)">
+                            <img src="Assets/farm.jpg" alt="Library">
+                            <div class="carousel-caption">Campus Library</div>
+                        </div>
+                        <div class="carousel-item" data-tilt data-tilt-max="10" data-tilt-speed="400" onclick="openLightbox(5)">
+                            <img src="Assets/WhatsApp Image 2025-04-17 at 22.11.02_ff75176c.jpg" alt="Sports Event">
+                            <div class="carousel-caption">Sports and Recreation</div>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button onclick="moveCarousel(-1)">&#8249;</button>
+                        <button onclick="moveCarousel(1)">&#8250;</button>
+                    </div>
+                    <div class="carousel-dots">
+                        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(3)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(4)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(5)"></div>
+                    </div>
+                </div>
+                <a href="contact.html" class="btn">Get in Touch</a>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <img src="" alt="Lightbox Image">
+                <div class="lightbox-caption"></div>
+                <div class="lightbox-nav">
+                    <button onclick="changeImage(-1)">&#8249;</button>
+                    <button onclick="changeImage(1)">&#8250;</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Info</h3>
+                <p>Phone: +254 702 264 201</p>
+                <p>Email: <a href="mailto:info@mutituadventist.com">info@mutituadventist.com</a></p>
+                <p>Address: P.O. Box 23, Kikima, Makueni County, Kenya</p>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <div>
+                    <a href="#">Facebook</a> |
+                    <a href="#">Twitter/X</a> |
+                    <a href="#">Instagram</a> |
+                    <a href="#">YouTube</a>
+                </div>
+                <p>© Mutitu Adventist College 2025. All Rights Reserved. | A Seventh-day Adventist Institution.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Menu
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Particle Animation
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particlesArray = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.015;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.3)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        function initParticles() {
+            for (let i = 0; i < 60; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.2) {
+                    particlesArray.splice(i, 1);
+                    particlesArray.push(new Particle());
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Carousel Functionality
+        const images = [
+            { src: 'https://via.placeholder.com/1200x600?text=Campus+Building', caption: 'Modern Classroom Facilities' },
+            { src: 'https://via.placeholder.com/1200x600?text=Student+Life', caption: 'Student Activities' },
+            { src: 'https://via.placeholder.com/1200x600?text=Chapel+Service', caption: 'Worship Service' },
+            { src: 'https://via.placeholder.com/1200x600?text=Community+Outreach', caption: 'Community Outreach' },
+            { src: 'https://via.placeholder.com/1200x600?text=Library', caption: 'Campus Library' },
+            { src: 'https://via.placeholder.com/1200x600?text=Sports+Event', caption: 'Sports and Recreation' }
+        ];
+        let currentSlide = 0;
+        const carousel = document.getElementById('carousel');
+        let autoSlideInterval;
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + images.length) % images.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                moveCarousel(1);
+            }, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+        startAutoSlide();
+
+        // Lightbox Functionality
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            lightboxImg.src = images[index].src;
+            lightboxCaption.textContent = images[index].caption;
+            lightbox.classList.add('active');
+            stopAutoSlide();
+        }
+
+        function changeImage(direction) {
+            currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+            const lightboxImg = document.querySelector('.lightbox img');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            lightboxImg.src = images[currentImageIndex].src;
+            lightboxCaption.textContent = images[currentImageIndex].caption;
+        }
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.classList.contains('lightbox')) {
+                e.target.classList.remove('active');
+                startAutoSlide();
+            }
+        });
+    </script>
+</body>
+</html>
