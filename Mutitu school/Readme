@@ -1,0 +1,62 @@
+# Mutitu Adventist College Website
+
+Welcome to the official website for Mutitu Adventist College, a premier institution nestled in the serene Mbooni Hills, Kenya. This website provides information about the college's programs, campus life, admissions, and more.
+
+## Features
+
+- **Home Page:** Overview of the college, call to action, and quick navigation.
+- **About Us:** History, mission, vision, facilities, and achievements.
+- **Programs:** Detailed information about certificate and diploma programs.
+- **Gallery:** Interactive photo gallery showcasing campus life and events.
+- **Contact:** Contact information, inquiry form, and campus location map.
+- **Responsive Design:** Optimized for desktop and mobile devices.
+- **Modern UI:** Elegant gradients, parallax effects, and interactive elements.
+
+## Project Structure
+
+```
+about.html
+admissions.html
+contact.html
+gallery.html
+index.html
+programs.html
+Assets/
+    # Images and videos used on the website
+css/
+    style.css
+js/
+    script.js
+```
+
+## How to Use
+
+1. **Clone or Download** this repository to your local machine.
+2. **Open `index.html`** in your web browser to view the homepage.
+3. **Navigate** using the menu to explore other pages (About, Programs, Gallery, Contact).
+
+## Customization
+
+- **Images:** Replace images in the `Assets/` folder with your own for a personalized gallery and campus visuals.
+- **Content:** Edit the HTML files to update text, programs, or contact details as needed.
+- **Styles:** Modify `css/style.css` to adjust colors, fonts, or layout.
+
+## Technologies Used
+
+- HTML5 & CSS3
+- JavaScript (for interactivity and animations)
+- [Vanilla Tilt.js](https://micku7zu.github.io/vanilla-tilt.js/) (for card tilt effects)
+- Google Fonts
+
+## Credits
+
+- Images and videos are for demonstration purposes. Replace with your own media for production use.
+- Inspired by modern educational website designs.
+
+## License
+
+This project is for educational and demonstration purposes only.
+
+---
+
+© Mutitu Adventist College 2025. All Rights Reserved.
